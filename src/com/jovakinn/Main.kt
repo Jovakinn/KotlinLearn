@@ -1,9 +1,20 @@
 package com.jovakinn
 
 fun main(args: Array<String>){
-    var john = User("John", "Jackson")
 
-    john.login
-    john.printUser()
+    val user = MainProvider()
+//    user.printInfo(User())
+//    println(user.getConnection())
 
+    checkDataTypes(user)
+
+}
+
+fun checkDataTypes(obj: MainProvider){
+    if (obj is UserInfoProvider){
+        obj.printInfo(User())
+    }
+    else if (obj is DbConnection){
+        println(obj.getConnection())
+    }
 }
