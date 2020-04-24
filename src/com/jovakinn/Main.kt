@@ -22,6 +22,16 @@ val filter: (String) -> Boolean = {
     it.startsWith("P")
 }
 
+fun calcFun(arr: Array<Int>){
+    println(arr.sum())
+}
+
+fun max(alpha: Int, betta: Int) {
+    if (alpha > betta)
+        println(alpha)
+    else
+        println(betta)
+}
 fun main(args: Array<String>){
     val list = listOf("Java", "PHP", "Python", "C++")
     filterList(list, filter)
@@ -45,4 +55,11 @@ fun main(args: Array<String>){
     val test2 = Some()
     val test3 = Some()
     val test4 = Some()
+
+    var array: Array<Int> = arrayOf(1, 2, 3, 4, 5)
+    calcFun(array)
+    max(1, 0)
+
+    for (i in 100 downTo 0 step 1)
+        println(i)
 }
