@@ -1,42 +1,48 @@
 package com.jovakinn
 
-enum class Animals{
-    DOG, CAT, LION, BEAR;
+class Some{
+    companion object {
+        var count: Int = 0
+    }
 
-    fun toLowerCase () = name.toLowerCase().capitalize()
+    init {
+        count++
+        println("Created objects: $count")
+    }
+}
+fun filterList(list: List<String>,
+               filter: (String) -> (Boolean)) {
+    list.forEach{el ->
+        if (filter(el))
+            println(el)
+    }
+}
+
+val filter: (String) -> Boolean = {
+    it.startsWith("P")
 }
 
 fun main(args: Array<String>){
+    val list = listOf("Java", "PHP", "Python", "C++")
+    filterList(list, filter)
 
-//    val user = NewClass()
-//    user.printInfo(User())
-//    println(user.getConnection())
 
-    val user = object : MainProvider(){
-        override fun printInfo(user: User) {
-            super.printInfo(user)
-            println("output text")
-        }
+    val db1 = Db.MongoDb(1, "mongo")
+    val db2 = Db.PostgreSQL(1, "mongo", true)
+
+    val db_copy = db1.copy(conn = "Done")
+
+    if(db1 == db_copy)
+        println("Equal")
+    else
+        println("Not equal")
+
+    if (db_copy is Db.MongoDb){
+        db_copy.printInfo()
     }
 
-    checkDataTypes(user)
-
-    val animal = Animals.CAT
-
-    when (animal){
-        Animals.CAT -> println(animal.toLowerCase())
-        Animals.LION -> println(animal.toLowerCase())
-        else -> println("Something else")
-    }
-
+    val test = Some()
+    val test2 = Some()
+    val test3 = Some()
+    val test4 = Some()
 }
-
-fun checkDataTypes(obj: MainProvider){
-    if (obj is UserInfoProvider){
-        obj.printInfo(User())
-    }
-    else if (obj is DbConnection){
-        println(obj.getConnection())
-    }
-}
-
